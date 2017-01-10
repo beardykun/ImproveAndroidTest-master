@@ -159,15 +159,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void showPasswordValidationError() {
-        editPassword.setError("Enter password, at least 6 digits");
+        editPassword.setError("Enter password, at least 6 letters");
     }
 
     @Override
     public void onLoginSuccess() {
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
                 String[] emailTo = new String[1];
                 emailTo[0] = editEmail.getText().toString();
 
@@ -181,9 +177,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, toSend);
                 startActivity(intent);
-
-            }
-        });
     }
 
     @OnTextChanged({R.id.edit_full_name, R.id.edit_password, R.id.edit_username, R.id.edit_email})
