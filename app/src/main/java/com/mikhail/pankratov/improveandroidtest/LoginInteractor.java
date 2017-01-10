@@ -22,8 +22,7 @@ public interface LoginInteractor {
 
         void onPasswordValidationFailed();
 
-        void sendMessage(String fullName, String birthDate, String email,
-                           String username, String password);
+        Intent sendMessage();
 
         void onError(String error);
 

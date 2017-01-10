@@ -11,4 +11,21 @@
     </style>
     <style name="TextLabel" parent="TextAppearance.AppCompat"><item name="android:textColor">@color/light_green</item></style>
 
+    <style name="TextInputLayoutStyle" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLength">30</item>
+        <item name="counterMaxLength">30</item>
+        <item name="counterEnabled">true</item>
+        <item name="counterTextAppearance">@style/TextLabel</item>
+        <item name="android:textColorHint">@color/light_green</item>
+        <item name="android:textColor">@color/light_green</item>
+    </style>
+
+    <style name="EditTextInputLayoutStyle" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLength">30</item>
+    </style>
+
 </resources>

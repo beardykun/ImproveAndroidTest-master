@@ -12,7 +12,12 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     LoginInteractor interactor;
     LoginView view;
-    private Intent intent;
+
+    private  String fullName;
+    private  String birthDate;
+    private  String email;
+    private  String username;
+    private  String password;
 
     public LoginPresenterImpl(){interactor = new LoginInteractorImpl();}
 
@@ -68,14 +73,13 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
     public void onSuccess() {
         if(view != null){
             view.hideProgress();
-            view.onLoginSuccess(intent);
+            view.onLoginSuccess(sendMessage());
 
         }
     }
 
     @Override
-    public void sendMessage(String fullName, String birthDate, String email,
-                            String username, String password) {
+    public Intent sendMessage() {
         String[] emailTo = new String[1];
         emailTo[0] = email;
 
@@ -87,7 +91,8 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
         intentToSend.putExtra(Intent.EXTRA_EMAIL, emailTo);
         intentToSend.setType("text/plain");
         intentToSend.putExtra(Intent.EXTRA_TEXT, toSend);
-        intent = intentToSend;
+
+        return intentToSend;
     }
 
     @Override
@@ -104,6 +109,11 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
     public void login(String fullName, String birthDate, String email, String username, String password) {
         if (view != null) {
             view.showProgress();
+            this.fullName = fullName;
+            this.birthDate = birthDate;
+            this.email = email;
+            this.username = username;
+            this.password = password;
             interactor.login(fullName, birthDate, email, username, password, this);
         }
     }

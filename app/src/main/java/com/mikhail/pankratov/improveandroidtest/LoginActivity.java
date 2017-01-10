@@ -21,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @BindView(R.id.layout_edit_password)TextInputLayout layoutEditPassword;
 
     @BindView(R.id.send_button) ImageButton sendMail;
-    @BindView(R.id.fine_choice) TextView fineChoice;
     @BindView(R.id.layProgress) RelativeLayout progressLay;
 
     private int year, month, day;
@@ -60,10 +61,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
         presenter = new LoginPresenterImpl();
 
-        fineChoice.setText("Fine choice!\nYou're gonna love our app!");
         setAnimationForFields();
+        setCalendarDate();
     }
 
+    private void setCalendarDate(){
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -186,6 +193,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             public void run() {
                 layoutEditUsername.setErrorEnabled(false);
                 layoutEditUsername.setError("");
+                layoutEditName.setCounterEnabled(true);
             }
         }, ERROR_SHOW_TIMEOUT);
     }

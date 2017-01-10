@@ -35,7 +35,6 @@ public class LoginInteractorImpl implements LoginInteractor {
             listener.onPasswordValidationFailed();
             return false;
         }
-        listener.sendMessage(fullName, birthDate, email, username, password);
         return true;
     }
 }
