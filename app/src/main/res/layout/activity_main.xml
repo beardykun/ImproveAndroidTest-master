@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
+    tools:context="com.mikhail.pankratov.improveandroidjtest.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/green"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/fine_choice"/>
+
+    <LinearLayout   android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fields_layout"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingTop="32dp"
+                    android:background="@color/green"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/fine_choice">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="@string/edit_full_name_hint"
+                  android:id="@+id/edit_full_name"
+                  android:inputType="textPersonName"
+                  android:textSize="17sp"
+                  android:maxLength="30"
+                  android:textColorHint="@color/light_green"
+                  android:textColor="@color/light_green"/>
+            </android.support.design.widget.TextInputLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/text_full_name"
+                  android:textColor="@color/light_green"
+                  android:text="@string/count_default"
+                  android:textSize="12sp"
+                  android:visibility="invisible"
+                  android:gravity="end"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/edit_birth_date"
+                  android:inputType="none"
+                  android:focusable="false"
+                  android:hint="@string/edit_birth_hint"
+                  android:textSize="17sp"
+                  android:maxLength="30"
+                  android:textColorHint="@color/light_green"
+                  android:textColor="@color/light_green"
+                  android:layout_marginBottom="10dp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/edit_email"
+                  android:inputType="textEmailAddress"
+                  android:textSize="17sp"
+                  android:maxLength="30"
+                  android:textColorHint="@color/light_green"
+                  android:textColor="@color/light_green"
+                  android:hint="@string/edit_email_hint"/>
+            </android.support.design.widget.TextInputLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/light_green"
+                  android:text="@string/count_default"
+                  android:textSize="12sp"
+                  android:id="@+id/text_email"
+                  android:visibility="invisible"
+                  android:gravity="end"/>
+
+        </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/edit_username"
+                  android:hint="@string/edit_username_hint"
+                  android:inputType="textPersonName"
+                  android:textSize="17sp"
+                  android:maxLength="30"
+                  android:textColorHint="@color/light_green"
+                  android:textColor="@color/light_green"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/light_green"
+                  android:text="@string/count_default"
+                  android:textSize="12sp"
+                  android:id="@+id/text_username"
+                  android:visibility="invisible"
+                  android:gravity="end"/>
+
+    </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/edit_password"
+                  android:inputType="textPassword"
+                  android:textSize="17sp"
+                  android:maxLength="30"
+                  android:textColorHint="@color/light_green"
+                  android:textColor="@color/light_green"
+                  android:hint="@string/edit_password_hint"/>
+            </android.support.design.widget.TextInputLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/light_green"
+                  android:text="@string/count_default"
+                  android:textSize="12sp"
+                  android:id="@+id/text_password"
+                  android:visibility="invisible"
+                  android:layout_marginBottom="33dp"
+                  android:gravity="end"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/empty_view"
+              android:paddingTop="5dp"
+              android:layout_below="@id/fields_layout"
+/>
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/empty_view2"
+              android:layout_below="@id/empty_view"
+    />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/send_button"
+        android:src="@mipmap/ic_launcher"
+        android:background="@drawable/rounded_button"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="23dp"
+        android:layout_above="@id/empty_view2"
+        android:contentDescription="@string/send_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"/>
+    </RelativeLayout>
+</LinearLayout>
