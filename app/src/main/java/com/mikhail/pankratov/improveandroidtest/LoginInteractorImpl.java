@@ -1,6 +1,7 @@
 package com.mikhail.pankratov.improveandroidtest;
 
 
+import android.content.Intent;
 
 /**
  * Created by User on 09.01.2017.
@@ -21,7 +22,7 @@ public class LoginInteractorImpl implements LoginInteractor {
         if (fullName.length() < 3){
             listener.onFullNameValidationFailed();
             return false;
-        }else if (birthDate.length() < 1){
+        } else if (birthDate.length() < 1){
             listener.onBirthDateValidationFailed();
             return false;
         }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -34,6 +35,7 @@ public class LoginInteractorImpl implements LoginInteractor {
             listener.onPasswordValidationFailed();
             return false;
         }
+        listener.sendMessage(fullName, birthDate, email, username, password);
         return true;
     }
 }

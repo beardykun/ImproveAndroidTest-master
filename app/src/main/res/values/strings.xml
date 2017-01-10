@@ -7,7 +7,5 @@
     <string name="edit_birth_hint">Birth</string>
     <string name="send_button">Send button</string>
     <string name="count_default">0/30</string>
-    <string name="dialog_success_header">Sign in</string>
-    <string name="dialog_success_message">Congratulation. You logged in!</string>
-    <string name="dialog_success_button">OK</string>
+
 </resources>

@@ -6,6 +6,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Handler;
 import android.preference.PreferenceActivity;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,24 +30,23 @@ import butterknife.OnTextChanged;
 public class LoginActivity extends AppCompatActivity implements LoginView{
 
     private static final int DIALOG_CALL = 1;
+    private static final int ERROR_SHOW_TIMEOUT = 2000;
 
-    @BindView(R.id.edit_full_name) EditText editName;
+    @BindView(R.id.edit_full_name) TextInputEditText editName;
+    @BindView(R.id.edit_birth_date) TextInputEditText editDate;
+    @BindView(R.id.edit_email) TextInputEditText editEmail;
+    @BindView(R.id.edit_username) TextInputEditText editUsername;
+    @BindView(R.id.edit_password) TextInputEditText editPassword;
 
-    @BindView(R.id.edit_birth_date) TextView editDate;
-
-    @BindView(R.id.edit_email) EditText editEmail;
-
-    @BindView(R.id.edit_username) EditText editUsername;
-
-    @BindView(R.id.edit_password) EditText editPassword;
+    @BindView(R.id.layout_edit_full_name) TextInputLayout layoutEditName;
+    @BindView(R.id.layout_edit_birth_date)TextInputLayout layoutEditDate;
+    @BindView(R.id.layout_edit_email)TextInputLayout layoutEditEmail;
+    @BindView(R.id.layout_edit_username)TextInputLayout layoutEditUsername;
+    @BindView(R.id.layout_edit_password)TextInputLayout layoutEditPassword;
 
     @BindView(R.id.send_button) ImageButton sendMail;
-
     @BindView(R.id.fine_choice) TextView fineChoice;
-
     @BindView(R.id.layProgress) RelativeLayout progressLay;
-
-    private TextView text;
 
     private int year, month, day;
 
@@ -106,20 +107,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         editDate.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
     }
 
-    @OnClick({R.id.send_button, R.id.edit_birth_date})
-    public void onLoginClick(View view) {
+    @OnClick(R.id.send_button)
+    public void onLoginClick() {
+        presenter.login(editName.getText().toString(), editDate.getText().toString(), editEmail.getText().toString(),
+        editUsername.getText().toString(), editPassword.getText().toString());
+    }
 
-        switch (view.getId()){
-            case R.id.send_button:
-                presenter.login(editName.getText().toString(), editDate.getText().toString(), editEmail.getText().toString(),
-                        editUsername.getText().toString(), editPassword.getText().toString());
-                break;
-
-            case R.id.edit_birth_date:
-                editDate.setError(null);
-                showDialog(DIALOG_CALL);
-                break;
-        }
+    @OnClick(R.id.edit_birth_date)
+    public void doBirthEdit(){
+        editDate.setError(null);
+        showDialog(DIALOG_CALL);
     }
 
     @Override
@@ -139,90 +136,76 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void showFullNameValidationError() {
-        editName.setError("Enter FullName, at least 3 letters");
+        layoutEditName.setErrorEnabled(true);
+        layoutEditName.setError("Enter FullName, at least 3 letters");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layoutEditName.setErrorEnabled(false);
+                layoutEditName.setError("");
+            }
+        }, ERROR_SHOW_TIMEOUT);
     }
 
     @Override
     public void showBirthDateValidationError() {
-        editDate.setError("Choose birth date");
+        layoutEditDate.setErrorEnabled(true);
+        layoutEditDate.setError("Choose birth date");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layoutEditDate.setErrorEnabled(false);
+                layoutEditDate.setError("");
+            }
+        }, ERROR_SHOW_TIMEOUT);
     }
 
     @Override
     public void showEmailValidationError() {
-        editEmail.setError("Invalid email address");
+        layoutEditEmail.setErrorEnabled(true);
+        layoutEditEmail.setError("Invalid email address");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layoutEditEmail.setErrorEnabled(false);
+                layoutEditEmail.setError("");
+            }
+        }, ERROR_SHOW_TIMEOUT);
     }
 
     @Override
     public void showUsernameValidationError() {
-        editUsername.setError("Enter username, at least 3 letters");
+        layoutEditUsername.setErrorEnabled(true);
+        layoutEditUsername.setError("Enter username, at least 3 letters");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layoutEditUsername.setErrorEnabled(false);
+                layoutEditUsername.setError("");
+            }
+        }, ERROR_SHOW_TIMEOUT);
     }
 
     @Override
     public void showPasswordValidationError() {
-        editPassword.setError("Enter password, at least 6 letters");
+        layoutEditPassword.setErrorEnabled(true);
+        layoutEditPassword.setError("Enter password, at least 6 letters");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layoutEditPassword.setErrorEnabled(false);
+                layoutEditPassword.setError("");
+            }
+        }, ERROR_SHOW_TIMEOUT);
     }
 
     @Override
-    public void onLoginSuccess() {
-                String[] emailTo = new String[1];
-                emailTo[0] = editEmail.getText().toString();
-
-                String toSend = "FullName: " + editName.getText().toString() + "\nBirth Date: " + editDate.getText()
-                        + "\nUsername: " + editUsername.getText().toString() + "\nPassword: "
-                        + editPassword.getText().toString() + "\nEmail: " + editEmail.getText().toString();
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Registration.");
-                intent.putExtra(Intent.EXTRA_EMAIL, emailTo);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, toSend);
+    public void onLoginSuccess(Intent intent) {
                 startActivity(intent);
-    }
-
-    @OnTextChanged({R.id.edit_full_name, R.id.edit_password, R.id.edit_username, R.id.edit_email})
-    public void setTextListener(CharSequence charSequence, int start, int before, int count){
-        String number = charSequence.toString().length() +"/30";
-        text.setText(number);
-    }
-
-    @OnFocusChange({R.id.edit_full_name, R.id.edit_password, R.id.edit_username, R.id.edit_email})
-    public void onFocusChange(View view, boolean inFocus){
-        switch (view.getId()){
-            case R.id.edit_full_name:
-                if(inFocus){
-                    text = (TextView)findViewById(R.id.text_full_name);
-                    text.setVisibility(View.VISIBLE);
-                }else {
-                    text.setVisibility(View.INVISIBLE);
-                }
-                break;
-
-            case R.id.edit_username:
-                if(inFocus){
-                    text = (TextView)findViewById(R.id.text_username);
-                    text.setVisibility(View.VISIBLE);
-                }else {
-                    text.setVisibility(View.INVISIBLE);
-                }
-                break;
-
-            case R.id.edit_email:
-                if(inFocus){
-                    text = (TextView)findViewById(R.id.text_email);
-                    text.setVisibility(View.VISIBLE);
-                }else {
-                    text.setVisibility(View.INVISIBLE);
-                }
-                break;
-
-            case R.id.edit_password:
-                if(inFocus){
-                    text = (TextView)findViewById(R.id.text_password);
-                    text.setVisibility(View.VISIBLE);
-                }else {
-                    text.setVisibility(View.INVISIBLE);
-                }
-                break;
-        }
     }
 }

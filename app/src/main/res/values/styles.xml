@@ -9,6 +9,6 @@
         <item name="colorControlActivated">@color/yellow</item>
 
     </style>
-
+    <style name="TextLabel" parent="TextAppearance.AppCompat"><item name="android:textColor">@color/light_green</item></style>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.mikhail.pankratov.improveandroidtest;
 
 
+import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 
 /**
  * Created by User on 09.01.2017.
@@ -10,6 +12,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     LoginInteractor interactor;
     LoginView view;
+    private Intent intent;
 
     public LoginPresenterImpl(){interactor = new LoginInteractorImpl();}
 
@@ -65,8 +68,26 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
     public void onSuccess() {
         if(view != null){
             view.hideProgress();
-            view.onLoginSuccess();
+            view.onLoginSuccess(intent);
+
         }
+    }
+
+    @Override
+    public void sendMessage(String fullName, String birthDate, String email,
+                            String username, String password) {
+        String[] emailTo = new String[1];
+        emailTo[0] = email;
+
+        String toSend = "Full Name: " + fullName + "\nBirth Date: " + birthDate
+                + "\nUsername: " + username + "\nPassword: "
+                + password + "\nEmail: " + email;
+        Intent intentToSend = new Intent(Intent.ACTION_SEND);
+        intentToSend.putExtra(Intent.EXTRA_SUBJECT, "Registration.");
+        intentToSend.putExtra(Intent.EXTRA_EMAIL, emailTo);
+        intentToSend.setType("text/plain");
+        intentToSend.putExtra(Intent.EXTRA_TEXT, toSend);
+        intent = intentToSend;
     }
 
     @Override
