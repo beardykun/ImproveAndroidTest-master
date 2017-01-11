@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Handler;
 import android.preference.PreferenceActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -34,19 +35,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     private static final int DIALOG_CALL = 1;
     private static final int ERROR_SHOW_TIMEOUT = 2000;
 
-    @BindView(R.id.edit_full_name) TextInputEditText editName;
-    @BindView(R.id.edit_birth_date) TextInputEditText editDate;
-    @BindView(R.id.edit_email) TextInputEditText editEmail;
-    @BindView(R.id.edit_username) TextInputEditText editUsername;
-    @BindView(R.id.edit_password) TextInputEditText editPassword;
+    @BindView(R.id.full_name_edit) TextInputEditText nameEdit;
+    @BindView(R.id.birth_date_edit) TextInputEditText dateEdit;
+    @BindView(R.id.email_edit) TextInputEditText emailEdit;
+    @BindView(R.id.username_edit) TextInputEditText usernameEdit;
+    @BindView(R.id.password_edit) TextInputEditText passwordEdit;
 
-    @BindView(R.id.layout_edit_full_name) TextInputLayout layoutEditName;
-    @BindView(R.id.layout_edit_birth_date)TextInputLayout layoutEditDate;
-    @BindView(R.id.layout_edit_email)TextInputLayout layoutEditEmail;
-    @BindView(R.id.layout_edit_username)TextInputLayout layoutEditUsername;
-    @BindView(R.id.layout_edit_password)TextInputLayout layoutEditPassword;
+    @BindView(R.id.full_name_text_input) TextInputLayout nameInputLayout;
+    @BindView(R.id.birth_date_text_input)TextInputLayout dateInputLayout;
+    @BindView(R.id.email_text_input)TextInputLayout emailInputLayout;
+    @BindView(R.id.username_text_input)TextInputLayout usernameInputLayout;
+    @BindView(R.id.password_text_input)TextInputLayout passwordInputLayout;
 
-    @BindView(R.id.send_button) ImageButton sendMail;
+    @BindView(R.id.send_FAB) FloatingActionButton sendFAB;
     @BindView(R.id.layProgress) RelativeLayout progressLay;
 
     private int year, month, day;
@@ -87,12 +88,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         Animation fromLeft = AnimationUtils.loadAnimation(this, R.anim.from_left);
         Animation fromRight = AnimationUtils.loadAnimation(this, R.anim.from_right);
 
-        editName.startAnimation(fromLeft);
-        editDate.startAnimation(fromRight);
-        editEmail.startAnimation(fromLeft);
-        editUsername.startAnimation(fromRight);
-        editPassword.startAnimation(fromLeft);
-        sendMail.setAnimation(fromRight);
+        nameEdit.startAnimation(fromLeft);
+        dateEdit.startAnimation(fromRight);
+        emailEdit.startAnimation(fromLeft);
+        usernameEdit.startAnimation(fromRight);
+        passwordEdit.startAnimation(fromLeft);
+        sendFAB.setAnimation(fromRight);
     }
 
     @Override
@@ -111,18 +112,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     };
 
     private void showDate(int year, int month, int day) {
-        editDate.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
+        dateEdit.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
     }
 
-    @OnClick(R.id.send_button)
+    @OnClick(R.id.send_FAB)
     public void onLoginClick() {
-        presenter.login(editName.getText().toString(), editDate.getText().toString(), editEmail.getText().toString(),
-        editUsername.getText().toString(), editPassword.getText().toString());
+        presenter.login(nameEdit.getText().toString(), dateEdit.getText().toString(), emailEdit.getText().toString(),
+        usernameEdit.getText().toString(), passwordEdit.getText().toString());
     }
 
-    @OnClick(R.id.edit_birth_date)
+    @OnClick(R.id.birth_date_edit)
     public void doBirthEdit(){
-        editDate.setError(null);
         showDialog(DIALOG_CALL);
     }
 
@@ -143,71 +143,38 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void showFullNameValidationError() {
-        layoutEditName.setErrorEnabled(true);
-        layoutEditName.setError("Enter FullName, at least 3 letters");
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                layoutEditName.setErrorEnabled(false);
-                layoutEditName.setError("");
-            }
-        }, ERROR_SHOW_TIMEOUT);
+        showValidationError(nameInputLayout, getString(R.string.name_error));
     }
 
     @Override
     public void showBirthDateValidationError() {
-        layoutEditDate.setErrorEnabled(true);
-        layoutEditDate.setError("Choose birth date");
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                layoutEditDate.setErrorEnabled(false);
-                layoutEditDate.setError("");
-            }
-        }, ERROR_SHOW_TIMEOUT);
+        showValidationError(dateInputLayout, getString(R.string.date_error));
     }
 
     @Override
     public void showEmailValidationError() {
-        layoutEditEmail.setErrorEnabled(true);
-        layoutEditEmail.setError("Invalid email address");
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                layoutEditEmail.setErrorEnabled(false);
-                layoutEditEmail.setError("");
-            }
-        }, ERROR_SHOW_TIMEOUT);
+        showValidationError(emailInputLayout, getString(R.string.email_error));
     }
 
     @Override
     public void showUsernameValidationError() {
-        layoutEditUsername.setErrorEnabled(true);
-        layoutEditUsername.setError("Enter username, at least 3 letters");
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                layoutEditUsername.setErrorEnabled(false);
-                layoutEditUsername.setError("");
-                layoutEditName.setCounterEnabled(true);
-            }
-        }, ERROR_SHOW_TIMEOUT);
+        showValidationError(usernameInputLayout, getString(R.string.username_error));
     }
 
     @Override
     public void showPasswordValidationError() {
-        layoutEditPassword.setErrorEnabled(true);
-        layoutEditPassword.setError("Enter password, at least 6 letters");
+        showValidationError(passwordInputLayout, getString(R.string.password_error));
+    }
+
+    public void showValidationError(final TextInputLayout layout, String error) {
+        layout.setErrorEnabled(true);
+        layout.setError(error);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                layoutEditPassword.setErrorEnabled(false);
-                layoutEditPassword.setError("");
+                layout.setErrorEnabled(false);
+                layout.setError("");
             }
         }, ERROR_SHOW_TIMEOUT);
     }
@@ -216,4 +183,5 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     public void onLoginSuccess(Intent intent) {
                 startActivity(intent);
     }
+
 }

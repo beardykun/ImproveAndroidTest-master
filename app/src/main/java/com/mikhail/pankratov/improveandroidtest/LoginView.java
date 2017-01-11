@@ -1,6 +1,7 @@
 package com.mikhail.pankratov.improveandroidtest;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 
 
 /**

@@ -9,5 +9,10 @@
     <string name="count_default">0/30</string>
     <string name="fine_choice">Fine choice\!
         You\'re gonna love our app\!</string>
+    <string name="name_error">Enter name, at least 3 letters</string>
+    <string name="date_error">Choose birth date</string>
+    <string name="email_error">Invalid email address</string>
+    <string name="username_error">Enter username, at least 3 letters</string>
+    <string name="password_error">Enter password, at least 6 digits</string>
 
 </resources>

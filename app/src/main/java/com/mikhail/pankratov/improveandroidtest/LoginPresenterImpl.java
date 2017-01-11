@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputLayout;
 
 public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLoginListener {
 
+
     LoginInteractor interactor;
     LoginView view;
 
