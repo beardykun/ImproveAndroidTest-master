@@ -22,13 +22,8 @@ public class RemindPresenterImpl implements RemindPresenter, RemindInteractor.on
     }
 
     @Override
-    public void toLoginActivity() {
-        view.onRemindSuccess();
-    }
-
-    @Override
     public void onRemindSuccess() {
-        toLoginActivity();
+        view.onRemindSuccess();
     }
 
     @Override

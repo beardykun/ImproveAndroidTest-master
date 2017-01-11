@@ -10,8 +10,6 @@ public interface RemindInteractor {
     interface onRemindListener {
         void onEmailInputError();
 
-        void toLoginActivity();
-
         void onRemindSuccess();
     }
 
