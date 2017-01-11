@@ -13,17 +13,19 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
     LoginInteractor interactor;
     LoginView view;
 
-    private  String fullName;
-    private  String birthDate;
-    private  String email;
-    private  String username;
-    private  String password;
+    private String fullName;
+    private String birthDate;
+    private String email;
+    private String username;
+    private String password;
 
-    public LoginPresenterImpl(){interactor = new LoginInteractorImpl();}
+    public LoginPresenterImpl() {
+        interactor = new LoginInteractorImpl();
+    }
 
     @Override
     public void onFullNameValidationFailed() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showFullNameValidationError();
         }
@@ -31,7 +33,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onBirthDateValidationFailed() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showBirthDateValidationError();
         }
@@ -39,7 +41,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onEmailValidationFailed() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showEmailValidationError();
         }
@@ -47,7 +49,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onUsernameValidationFailed() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showUsernameValidationError();
         }
@@ -55,7 +57,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onPasswordValidationFailed() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showPasswordValidationError();
         }
@@ -63,7 +65,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onError(String error) {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.showError(error);
         }
@@ -71,7 +73,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onSuccess() {
-        if(view != null){
+        if (view != null) {
             view.hideProgress();
             view.onLoginSuccess(sendMessage());
 

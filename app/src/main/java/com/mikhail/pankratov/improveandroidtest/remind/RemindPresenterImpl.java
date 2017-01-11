@@ -1,8 +1,5 @@
 package com.mikhail.pankratov.improveandroidtest.remind;
 
-import android.content.Context;
-import android.content.Intent;
-import com.mikhail.pankratov.improveandroidtest.login.LoginActivity;
 
 /**
  * Created by User on 11.01.2017.
@@ -10,28 +7,32 @@ import com.mikhail.pankratov.improveandroidtest.login.LoginActivity;
 
 public class RemindPresenterImpl implements RemindPresenter, RemindInteractor.onRemindListener {
 
-    public RemindPresenterImpl(){interactor = new RemindInteractorImpl();}
     RemindInteractor interactor;
-    RemindPasswordView view;
+    RemindView view;
+
+    public RemindPresenterImpl() {
+        interactor = new RemindInteractorImpl();
+    }
+
     @Override
     public void onEmailInputError() {
-        if(view != null){
+        if (view != null) {
             view.showEmailInputError();
         }
     }
 
     @Override
-    public void toLoginActivity(Context context) {
-        view.onRemindSuccess(new Intent(context, LoginActivity.class));
+    public void toLoginActivity() {
+        view.onRemindSuccess();
     }
 
     @Override
-    public void onRemindSuccess(Context context) {
-                toLoginActivity(context);
+    public void onRemindSuccess() {
+        toLoginActivity();
     }
 
     @Override
-    public void onAttacheView(RemindPasswordView view) {
+    public void onAttacheView(RemindView view) {
         this.view = view;
     }
 
@@ -41,7 +42,8 @@ public class RemindPresenterImpl implements RemindPresenter, RemindInteractor.on
     }
 
     @Override
-    public void onRemind(String email, Context context) {
-        interactor.onRemind(email, this, context);
+    public void onRemind(String email) {
+        interactor.onRemind(email, this);
     }
+
 }

@@ -9,17 +9,22 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import com.mikhail.pankratov.improveandroidtest.R;
+import com.mikhail.pankratov.improveandroidtest.login.LoginActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RemindPasswordActivity extends AppCompatActivity implements RemindPasswordView{
+public class RemindActivity extends AppCompatActivity implements RemindView {
 
     private static final int ERROR_SHOW_TIMEOUT = 2000;
 
-    @BindView(R.id.email_check_text_input)TextInputLayout emailCheckTextInput;
-    @BindView(R.id.email_check_edit)TextInputEditText emailCheckEdit;
+    @BindView(R.id.email_check_text_input)
+    TextInputLayout emailCheckTextInput;
+    @BindView(R.id.email_check_edit)
+    TextInputEditText emailCheckEdit;
 
     RemindPresenter presenter;
 
@@ -33,8 +38,8 @@ public class RemindPasswordActivity extends AppCompatActivity implements RemindP
     }
 
     @OnClick(R.id.remind_button)
-    public void onRemindClick(){
-        presenter.onRemind(emailCheckEdit.getText().toString(), this);
+    public void onRemindClick() {
+        presenter.onRemind(emailCheckEdit.getText().toString());
     }
 
     @Override
@@ -52,16 +57,18 @@ public class RemindPasswordActivity extends AppCompatActivity implements RemindP
     }
 
     @Override
-    public void onRemindSuccess(final Intent intent) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(RemindPasswordActivity.this);
-        builder.setTitle(getString(R.string.alert_title)).setMessage(getString(R.string.alert_message))
-                .setCancelable(false).setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(intent);
-                dialogInterface.cancel();
-            }
-        });
+    public void onRemindSuccess() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(RemindActivity.this);
+        builder.setTitle(getString(R.string.alert_title))
+                .setMessage(getString(R.string.alert_message))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        onBackPressed();
+                    }
+                });
         AlertDialog alert = builder.create();
         alert.show();
     }

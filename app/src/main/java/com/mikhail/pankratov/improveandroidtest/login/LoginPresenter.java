@@ -1,7 +1,6 @@
 package com.mikhail.pankratov.improveandroidtest.login;
 
 
-
 /**
  * Created by User on 09.01.2017.
  */

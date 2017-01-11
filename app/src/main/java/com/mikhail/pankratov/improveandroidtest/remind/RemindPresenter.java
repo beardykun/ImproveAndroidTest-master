@@ -1,16 +1,15 @@
 package com.mikhail.pankratov.improveandroidtest.remind;
 
-import android.content.Context;
 
 /**
  * Created by User on 11.01.2017.
  */
 
-public interface RemindPresenter{
+public interface RemindPresenter {
 
-    void onAttacheView(RemindPasswordView view);
+    void onAttacheView(RemindView view);
 
     void onDetachView();
 
-    void onRemind(String email, Context context);
+    void onRemind(String email);
 }

@@ -9,7 +9,7 @@ import android.content.Intent;
 
 public interface LoginInteractor {
 
-    interface onLoginListener{
+    interface onLoginListener {
 
         void onFullNameValidationFailed();
 
