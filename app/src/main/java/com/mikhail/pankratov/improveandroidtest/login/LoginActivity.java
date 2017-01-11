@@ -1,34 +1,28 @@
-package com.mikhail.pankratov.improveandroidtest;
+package com.mikhail.pankratov.improveandroidtest.login;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Handler;
-import android.preference.PreferenceActivity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mikhail.pankratov.improveandroidtest.R;
 
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
-import butterknife.OnTextChanged;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
 

@@ -1,8 +1,7 @@
-package com.mikhail.pankratov.improveandroidtest;
+package com.mikhail.pankratov.improveandroidtest.login;
 
 
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
 
 /**
  * Created by User on 09.01.2017.

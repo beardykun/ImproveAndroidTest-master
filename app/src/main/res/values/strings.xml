@@ -14,5 +14,11 @@
     <string name="email_error">Invalid email address</string>
     <string name="username_error">Enter username, at least 3 letters</string>
     <string name="password_error">Enter password, at least 6 digits</string>
+    <string name="email_check">Remind</string>
+    <string name="email_check_text">Enter your email for check</string>
+    <string name="email_check_error">Enter valid email</string>
+    <string name="alert_title">Congratulations!</string>
+    <string name="alert_message">You made it!</string>
+    <string name="ok_button">OK</string>
 
 </resources>

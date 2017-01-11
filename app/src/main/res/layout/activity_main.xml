@@ -37,7 +37,7 @@
                     android:paddingStart="@dimen/space_24_dp"
                     android:paddingEnd="@dimen/space_24_dp"
                     android:paddingTop="@dimen/space_16_dp"
-                    android:paddingBottom="@dimen/space_24_dp"
+                    android:layout_marginBottom="@dimen/space_24_dp"
                     android:background="@color/green"
                     android:orientation="vertical">
 
