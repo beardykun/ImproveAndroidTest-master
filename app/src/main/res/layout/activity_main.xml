@@ -94,6 +94,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/password_text_input"
                     style="@style/TextInputLayoutStyle"
+                    android:paddingBottom="@dimen/space_24_dp"
                     android:hint="@string/edit_password_hint">
 
                     <android.support.design.widget.TextInputEditText
@@ -114,7 +115,6 @@
             android:layout_marginEnd="@dimen/space_16_dp"
             android:layout_marginRight="@dimen/space_16_dp"
             android:layout_marginTop="@dimen/space_24_dp"
-            android:background="@drawable/rounded_button"
             android:contentDescription="@string/send_button"
             android:src="@mipmap/ic_launcher"
             app:layout_anchor="@id/fields_and_text_layout"
