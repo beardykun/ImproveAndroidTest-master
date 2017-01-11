@@ -94,8 +94,8 @@
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/password_text_input"
                     style="@style/TextInputLayoutStyle"
-                    android:paddingBottom="@dimen/space_24_dp"
-                    android:hint="@string/edit_password_hint">
+                    android:hint="@string/edit_password_hint"
+                    android:paddingBottom="@dimen/space_24_dp">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/password_edit"
