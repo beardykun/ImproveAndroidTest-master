@@ -6,6 +6,7 @@
     <string name="edit_password_hint">Password</string>
     <string name="edit_birth_hint">Birth</string>
     <string name="send_button">Send button</string>
+    <string name="remind_button">Remind Button</string>
     <string name="count_default">0/30</string>
     <string name="fine_choice">Fine choice!
         You\'re gonna love our app!</string>

@@ -127,7 +127,7 @@
             android:layout_marginEnd="@dimen/space_16_dp"
             android:layout_marginRight="@dimen/space_16_dp"
             android:layout_marginTop="@dimen/space_24_dp"
-            android:contentDescription="@string/send_button"
+            android:contentDescription="@string/remind_button"
             app:layout_anchor="@id/fields_and_text_layout"
             app:layout_anchorGravity="center|bottom" />
 
